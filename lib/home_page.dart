@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoeapp/global_variables.dart';
+import 'package:shoeapp/product_details_page.dart';
+import 'package:shoeapp/product_list.dart';
+import 'package:shoeapp/shopping_cart.dart';
 
 import 'product.dart';
 
@@ -13,6 +16,7 @@ class home_page extends StatefulWidget {
 class _home_pageState extends State<home_page> {
   List<String> categories = const ['All', 'NIke', 'Puma', 'Adidas', 'GoldStar'];
   late String selectedbtn;
+  int currentPage = 0;
 
   final borders = const OutlineInputBorder(
       borderRadius: BorderRadius.only(
@@ -26,91 +30,18 @@ class _home_pageState extends State<home_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text(
-                  "Shoes\nCollection",
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Expanded(
-                child: TextField(
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.search),
-                      border: borders,
-                      focusedBorder: borders,
-                      hintText: "search"),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 40,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  final filter = categories[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 6.0, vertical: 2),
-                    elevation: 2,
-                    child: SizedBox(
-                      width: 90,
-                      height: 35,
-                      child: TextButton(
-                        style: ButtonStyle(
-                            backgroundColor: selectedbtn == filter
-                                ? MaterialStatePropertyAll(
-                                    Theme.of(context).colorScheme.primary)
-                                : const MaterialStatePropertyAll(
-                                    Color.fromRGBO(245, 247, 249, 1))),
-                        onPressed: () {
-                          setState(() {
-                            selectedbtn = filter;
-                          });
-                        },
-                        child: Center(
-                          child: Text(
-                            style: const TextStyle(
-                                color: Colors.black, fontSize: 16),
-                            categories[index],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: products.length,
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return ProductCard(
-                    title: product['title'] as String,
-                    imageUrl: product['imageUrl'] as String,
-                    sizes: product['sizes'] as List<int>,
-                    price: product['price'] as double,
-                  );
-                }),
-          ),
-        ],
-      ),
-    ));
+      body: currentPage == 0 ? const ProductList() : const ShoppingCart(),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentPage,
+          onTap: (value) {
+            setState(() {
+              currentPage = value;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(label: '', icon: Icon(Icons.home)),
+            BottomNavigationBarItem(label: '', icon: Icon(Icons.shopping_cart))
+          ]),
+    );
   }
 }

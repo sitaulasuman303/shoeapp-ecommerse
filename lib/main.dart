@@ -13,6 +13,7 @@ class ShoeShop extends StatelessWidget {
     return MaterialApp(
       title: "ShoeShop",
       theme: ThemeData(
+        useMaterial3: true,
         fontFamily: "Lato",
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromRGBO(254, 206, 1, 1),

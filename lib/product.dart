@@ -5,11 +5,13 @@ class ProductCard extends StatelessWidget {
   final double price;
   final List<int> sizes;
   final String imageUrl;
+  final Color bgcolor;
   const ProductCard(
       {super.key,
       required this.title,
       required this.imageUrl,
       required this.price,
+      required this.bgcolor,
       required this.sizes});
 
   @override
@@ -18,8 +20,9 @@ class ProductCard extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(16),
-          margin: const EdgeInsets.only(bottom: 26),
-          color: const Color.fromRGBO(216, 240, 253, 1),
+          margin: const EdgeInsets.only(bottom: 26, left: 10, right: 10),
+          decoration: BoxDecoration(
+              color: bgcolor, borderRadius: BorderRadius.circular(20)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
