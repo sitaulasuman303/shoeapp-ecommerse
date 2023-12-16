@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoeapp/cart_provider.dart';
 import './home_page.dart';
 
 void main() {
@@ -10,18 +12,22 @@ class ShoeShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "ShoeShop",
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: "Lato",
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(254, 206, 1, 1),
-            primary: const Color.fromRGBO(254, 206, 1, 1)),
-        textTheme: const TextTheme(
-            titleMedium: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+    return ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MaterialApp(
+        title: "ShoeShop",
+        theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: "Lato",
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromRGBO(254, 206, 1, 1),
+              primary: const Color.fromRGBO(254, 206, 1, 1)),
+          textTheme: const TextTheme(
+              titleMedium:
+                  TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+        ),
+        home: const home_page(),
       ),
-      home: const home_page(),
     );
   }
 }

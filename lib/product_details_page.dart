@@ -1,6 +1,8 @@
 import 'dart:ffi' as ffi;
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shoeapp/cart_provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, Object> product;
@@ -86,7 +88,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: ElevatedButton.icon(
                       icon:
                           const Icon(Icons.shopping_cart, color: Colors.black),
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .addProduct({
+                          'id': widget.product['title'],
+                          'title': widget.product['title'],
+                          'price': widget.product['price'],
+                          'imageUrl': widget.product['imageUrl'],
+                          'company': widget.product['company'],
+                          'size': chiColor
+                        });
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 50),
                           backgroundColor:

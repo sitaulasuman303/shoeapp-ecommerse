@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoeapp/global_variables.dart';
-import 'package:shoeapp/product_details_page.dart';
 import 'package:shoeapp/product_list.dart';
 import 'package:shoeapp/shopping_cart.dart';
-
-import 'product.dart';
 
 class home_page extends StatefulWidget {
   const home_page({super.key});
@@ -17,6 +13,7 @@ class _home_pageState extends State<home_page> {
   List<String> categories = const ['All', 'NIke', 'Puma', 'Adidas', 'GoldStar'];
   late String selectedbtn;
   int currentPage = 0;
+  List<Widget> pages = const [ProductList(), ShoppingCart()];
 
   final borders = const OutlineInputBorder(
       borderRadius: BorderRadius.only(
@@ -30,8 +27,11 @@ class _home_pageState extends State<home_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: currentPage == 0 ? const ProductList() : const ShoppingCart(),
+      body: IndexedStack(index: currentPage, children: pages),
       bottomNavigationBar: BottomNavigationBar(
+          iconSize: 35,
+          selectedFontSize: 0,
+          unselectedFontSize: 0,
           currentIndex: currentPage,
           onTap: (value) {
             setState(() {
