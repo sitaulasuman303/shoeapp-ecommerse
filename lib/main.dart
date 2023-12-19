@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shoeapp/cart_provider.dart';
-import './home_page.dart';
+import 'package:shoeapp/providers/cart_provider.dart';
+import 'pages/home_page.dart';
 
 void main() {
   runApp(const ShoeShop());

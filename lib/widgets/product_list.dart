@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoeapp/global_variables.dart';
-import 'package:shoeapp/product.dart';
-import 'package:shoeapp/product_details_page.dart';
+import 'package:shoeapp/widgets/product.dart';
+import 'package:shoeapp/pages/product_details_page.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -11,7 +11,8 @@ class ProductList extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<ProductList> {
-  List<String> categories = const ['All', 'NIke', 'Puma', 'Adidas', 'GoldStar'];
+  List<String> categories = const ['All', 'Nike', 'Puma', 'Adidas', 'GoldStar'];
+  final nikeProdcut = products[0];
   late String selectedbtn;
 
   final borders = const OutlineInputBorder(
@@ -97,7 +98,7 @@ class _MyWidgetState extends State<ProductList> {
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: products.length,
+                itemCount: selectedbtn == 'Nike' ? 1 : products.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
                   Color bgcolor;
@@ -111,13 +112,21 @@ class _MyWidgetState extends State<ProductList> {
                         return ProductDetails(product: product);
                       }));
                     },
-                    child: ProductCard(
-                      title: product['title'] as String,
-                      imageUrl: product['imageUrl'] as String,
-                      sizes: product['sizes'] as List<int>,
-                      price: product['price'] as double,
-                      bgcolor: bgcolor,
-                    ),
+                    child: selectedbtn == 'Nike'
+                        ? ProductCard(
+                            title: nikeProdcut['title'] as String,
+                            imageUrl: nikeProdcut['imageUrl'] as String,
+                            sizes: nikeProdcut['sizes'] as List<int>,
+                            price: nikeProdcut['price'] as double,
+                            bgcolor: bgcolor,
+                          )
+                        : ProductCard(
+                            title: product['title'] as String,
+                            imageUrl: product['imageUrl'] as String,
+                            sizes: product['sizes'] as List<int>,
+                            price: product['price'] as double,
+                            bgcolor: bgcolor,
+                          ),
                   );
                 }),
           ),
