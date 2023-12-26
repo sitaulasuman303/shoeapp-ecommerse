@@ -1,16 +1,8 @@
-# shoeapp
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<h1>Shoe emmorce App</h1>
+<p>This is a current ongoing shoe app project</p>
+<h2>Home Page</h2>
+<img src="Photo0.png" alt="Home Page">
+<h2>Details Page</h2>
+<img src="Photo1.png" alt="Details Page">
+<h2>Cart Page</h2>
+<img src="Photo2.png" alt="Cart Page">
