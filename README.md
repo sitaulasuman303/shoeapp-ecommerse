@@ -1,5 +1,4 @@
 <h1>Shoe emmorce App</h1>
-<p>This is a current ongoing shoe app project</p>
 <h2>Home Page</h2>
 <img src="Photo0.png" alt="Home Page">
 <h2>Details Page</h2>
